@@ -1,5 +1,6 @@
 package com.develop.socket_api.controller;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,5 +19,10 @@ public class GlobalController {
     @PostMapping("send")
     public void sendToAll(@RequestBody String message) {
         socketService.sendMessage(message);
+    }
+
+    @PostMapping("send/{username}")
+    public void sendToAll(@PathVariable String username, @RequestBody String message) {
+        socketService.sendToUser(username, message);
     }
 }
